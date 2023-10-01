@@ -17,8 +17,6 @@ def load_csv(path):
 # 데이터 불러오기
 data = load_csv(f"{DATA_PATH}predicted_data.csv")
 
-st.dataframe(data)
-
 
 API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
                 placeholder="Bard API 키를 입력하세요! (sk-...)",
