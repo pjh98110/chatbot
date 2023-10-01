@@ -1,5 +1,7 @@
 streamlit
 streamlit_chat
 Bard
+bardapi
+langdetect
 pandas
 requests
