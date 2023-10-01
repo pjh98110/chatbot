@@ -1,0 +1,8 @@
+streamlit
+streamlit_chat
+streamlit.components.v1
+bardapi
+pandas
+requests
+streamlit_extras.colored_header
+os
