@@ -3,4 +3,3 @@ streamlit_chat
 Bard
 pandas
 requests
-os
