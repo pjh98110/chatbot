@@ -1,7 +1,10 @@
 streamlit
 streamlit_chat
+message
 bardapi
+Bard
 pandas
 requests
 streamlit_extras.colored_header
+colored_header
 os
