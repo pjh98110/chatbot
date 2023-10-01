@@ -3,5 +3,7 @@ streamlit_chat
 Bard
 bardapi
 langdetect
+colorama
+
 pandas
 requests
