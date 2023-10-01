@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_chat import message
 from bardapi import Bard
+import langdetect
 import os
 import requests
 import pandas as pd
