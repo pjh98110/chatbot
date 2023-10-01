@@ -3,7 +3,6 @@ from streamlit_chat import message
 from bardapi import Bard
 import os
 import requests
-from streamlit_extras.colored_header import colored_header
 import pandas as pd
 
 
@@ -47,11 +46,13 @@ st.session_state.setdefault('chat_stage', 1)
 
 
 
-colored_header(
-    label='인구수 예측_Chatbot',
-    description=None,
-    color_name="blue-70",
-)
+st.markdown(f"""
+            <span style='font-size: 30px;'>
+            <div style=" color: #19a83b">
+                <strong> 인구수 예측 Chatbot </strong>
+            </div>
+            """, unsafe_allow_html=True)
+st.divider()
 
 
 chat_placeholder = st.empty()
