@@ -1,6 +1,5 @@
 streamlit
 streamlit_chat
-Bard
 bardapi
 pandas
 requests
