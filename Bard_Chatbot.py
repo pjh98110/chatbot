@@ -10,23 +10,6 @@ DATA_PATH = "./"
 # 데이터 불러오기
 data = pd.read_csv(f"{DATA_PATH}predicted_data.csv")
 
-def pad_str(str_list, target_len):
-
-  padded_str_list = []
-  for str in str_list:
-    if len(str) < target_len:
-      padded_str = "0" * (target_len - len(str)) + str
-    else:
-      padded_str = str
-    padded_str_list.append(padded_str)
-  return padded_str_list
-
-
-str_list = data.Code.astype(str).to_list()
-target_len = 6
-padded_str_list = pad_str(str_list, target_len)
-
-data.Code = padded_str_list
 
 
 API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
