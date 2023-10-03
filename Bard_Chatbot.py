@@ -80,13 +80,20 @@ def on_input_change():
         st.session_state['target'] = user_input
         try:
             input_str = st.session_state['target'] # 화성시
-            target = data[data["월별"] == "24-10-01"]["총인구"].values[0] 
-            # 화성시 인구예측 모델로 예측한 약 100만명의 총인구 달성하는 시점
-            target_str = f"""24년 10월 1일 {input_str}의 총인구는 {target}명으로 예측되며, {input_str}의 
-            총인구가 증가하는 이유는 수도권 외부 유입, 아동친화도시, 산업단지 개발, 관광지 개발 등이 있으며 
-            앞으로 {input_str} 미래 총인구가 증가하는 이유에 대해 자세하게 설명해줘""" 
+            # 화성시 인구예측 모델로 예측한 약 100만명의 총인구 달성하는 시점            
+            idx = data[data['총인구'] >= 1000000].index[0] # 찾는 지역의 인덱스
+            target_str = f"""데이터 분석가로써 답변해줘. {data.iloc[idx]["월별"]} {input_str}의 총인구는 {data.iloc[idx]["총인구"]}명, 
+                인구성장률은 {data.iloc[idx]["예측 인구성장률"]}으로 예측되며, {input_str}의 
+                수도권 외부 유입: 도심규제완화, 
+                도시 접근성: GTX-A, 신안산, 
+                산업단지 개발: 삼성전자 반도체 공장,
+                아동친화도시: 아동친화도시 10가지 원칙,
+                임신 출산 복지사업: 22년 출생 수 전국 2위,
+                큰 행정면적: (서울시의 1.4배, 경기도 2위)이며
+                앞으로 {input_str}의 미래 총인구가 증가하는 이유와 변동성에 대해 보고서 형태로 자세하게 설명해줘"""
+
+
             # 인구예측 모델분석결과와 예시를 Bard API에 함께 전달
-            
             bard = Bard(token=os.environ["_BARD_API_KEY"], token_from_browser=True, session=session, timeout=30)
             response = bard.get_answer(target_str)
             st.session_state['generated'].append({"type": "normal", "data": response['content']})
