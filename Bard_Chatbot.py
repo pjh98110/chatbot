@@ -5,7 +5,6 @@ import os
 import requests
 import pandas as pd
 
-
 DATA_PATH = "./"
 
 # 데이터 불러오는 함수(캐싱)
@@ -17,8 +16,9 @@ def load_csv(path):
 data = load_csv(f"{DATA_PATH}predicted_data.csv")
 
 
+
 API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
-                placeholder="Bard API 키를 입력하세요! (sk-...)",
+                placeholder="Bard API 키를 입력하세요!",
                 type="password", key= "password", help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기")
 
 os.environ["_BARD_API_KEY"] = API_KEY
@@ -43,7 +43,6 @@ session.cookies.set("__Secure-1PSID", os.getenv("_BARD_API_KEY"))
 st.session_state.setdefault('generated', [{'type': 'normal', 'data': "원하시는 지역을 입력해주세요."}])
 st.session_state.setdefault('past', ['인구수 추세와 정보를 알고 싶어, 어떻게 하면 될까?'])
 st.session_state.setdefault('chat_stage', 1)
-
 
 
 st.markdown(f"""
