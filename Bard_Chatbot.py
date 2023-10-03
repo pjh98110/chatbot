@@ -11,10 +11,11 @@ DATA_PATH = "./"
 data = pd.read_csv(f"{DATA_PATH}predicted_data.csv")
 
 
-
 API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
                 placeholder="Bard API 키를 입력하세요!",
                 type="password", key= "password", help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기")
+
+API_KEY = st.secrets[API_KEY]
 
 os.environ["_BARD_API_KEY"] = API_KEY
 
