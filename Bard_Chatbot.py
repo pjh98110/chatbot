@@ -11,47 +11,23 @@ DATA_PATH = "./"
 data = pd.read_csv(f"{DATA_PATH}predicted_data.csv")
 
 
-# API 키를 사용자로부터 입력받기
-if 'API_KEY' not in st.session_state:
-    st.session_state['API_KEY'] = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
+API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
                 placeholder="Bard API 키를 입력하세요!",
                 type="password", key= "password", help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기")
 
-# 사용자가 API 키를 입력하면, 이 값을 사용하여 Bard API에 액세스
-if st.session_state['API_KEY']:
-    os.environ["_BARD_API_KEY"] = st.session_state['API_KEY']
+os.environ["_BARD_API_KEY"] = API_KEY
 
-    session = requests.Session()
-    session.headers = {
+
+session = requests.Session()
+session.headers = {
             "Host": "bard.google.com",
             "X-Same-Domain": "1",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
             "Origin": "https://bard.google.com",
             "Referer": "https://bard.google.com/",
-    }
-    session.cookies.set("__Secure-1PSID", os.getenv("_BARD_API_KEY"))
-
-
-
-
-# API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
-#                 placeholder="Bard API 키를 입력하세요!",
-#                 type="password", key= "password", help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기")
-
-# os.environ["_BARD_API_KEY"] = API_KEY
-
-
-# session = requests.Session()
-# session.headers = {
-#             "Host": "bard.google.com",
-#             "X-Same-Domain": "1",
-#             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
-#             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-#             "Origin": "https://bard.google.com",
-#             "Referer": "https://bard.google.com/",
-#         }
-# session.cookies.set("__Secure-1PSID", os.getenv("_BARD_API_KEY")) 
+        }
+session.cookies.set("__Secure-1PSID", os.getenv("_BARD_API_KEY")) 
 
 
 
