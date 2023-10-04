@@ -11,58 +11,23 @@ DATA_PATH = "./"
 data = pd.read_csv(f"{DATA_PATH}predicted_data.csv")
 
 
+API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
+                placeholder="Bard API 키를 입력하세요!",
+                type="password", key= "password", help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기")
+
+os.environ["_BARD_API_KEY"] = API_KEY
 
 
-# 세션 상태 초기화
-if 'API_KEY' not in st.session_state:
-    st.session_state['API_KEY'] = ""
-
-# 사용자로부터 API 키 입력 받기
-API_KEY = st.sidebar.text_input(
-    ":blue[Enter Your OPENAI API-KEY :key:]",
-    placeholder="Bard API 키를 입력하세요!",
-    type="password",
-    key="password",
-    help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기"
-)
-
-# API 키가 입력되면 세션 상태에 저장
-if API_KEY:
-    st.session_state['API_KEY'] = API_KEY
-
-# requests 세션 설정
 session = requests.Session()
 session.headers = {
-    "Host": "bard.google.com",
-    "X-Same-Domain": "1",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
-    "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-    "Origin": "https://bard.google.com",
-    "Referer": "https://bard.google.com/",
-}
-session.cookies.set("__Secure-1PSID", st.session_state['API_KEY'])
-
-
-
-
-
-# API_KEY = st.sidebar.text_input(":blue[Enter Your OPENAI API-KEY :key:]", 
-#                 placeholder="Bard API 키를 입력하세요!",
-#                 type="password", key= "password", help="[바드 API KEY 가져오는 방법] 구글 로그아웃 --> 로그인 --> bard.google.com --> F12(개발자 모드) --> 애플리케이션 --> 쿠키(bard.google.com) --> __Secure-1PSID --> 값을 복사하기 입력하기")
-
-# os.environ["_BARD_API_KEY"] = API_KEY
-
-
-# session = requests.Session()
-# session.headers = {
-#             "Host": "bard.google.com",
-#             "X-Same-Domain": "1",
-#             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
-#             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-#             "Origin": "https://bard.google.com",
-#             "Referer": "https://bard.google.com/",
-#         }
-# session.cookies.set("__Secure-1PSID", os.getenv("_BARD_API_KEY")) 
+            "Host": "bard.google.com",
+            "X-Same-Domain": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Origin": "https://bard.google.com",
+            "Referer": "https://bard.google.com/",
+        }
+session.cookies.set("__Secure-1PSID", os.getenv("_BARD_API_KEY")) 
 
 
 
