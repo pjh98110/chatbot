@@ -40,14 +40,6 @@ st.session_state.setdefault('past', ['인구수 추세와 정보를 알고 싶�
 st.session_state.setdefault('chat_stage', 1)
 
 
-# st.markdown(f"""
-#             <span style='font-size: 30px;'>
-#             <div style=" color: #19a83b">
-#                 <strong> 인구수 예측 Chatbot </strong>
-#             </div>
-#             """, unsafe_allow_html=True)
-# st.divider()
-
 colored_header(
     label='인구수 예측_Chatbot',
     description=None,
