@@ -3,3 +3,4 @@ streamlit_chat
 bardapi
 pandas
 requests
+streamlit_extras
