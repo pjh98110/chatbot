@@ -4,6 +4,7 @@ from bardapi import Bard
 import os
 import requests
 import pandas as pd
+from streamlit_extras.colored_header import colored_header
 
 DATA_PATH = "./"
 
@@ -39,13 +40,19 @@ st.session_state.setdefault('past', ['인구수 추세와 정보를 알고 싶�
 st.session_state.setdefault('chat_stage', 1)
 
 
-st.markdown(f"""
-            <span style='font-size: 30px;'>
-            <div style=" color: #19a83b">
-                <strong> 인구수 예측 Chatbot </strong>
-            </div>
-            """, unsafe_allow_html=True)
-st.divider()
+# st.markdown(f"""
+#             <span style='font-size: 30px;'>
+#             <div style=" color: #19a83b">
+#                 <strong> 인구수 예측 Chatbot </strong>
+#             </div>
+#             """, unsafe_allow_html=True)
+# st.divider()
+
+colored_header(
+    label='인구수 예측_Chatbot',
+    description=None,
+    color_name="green-70",
+)
 
 
 chat_placeholder = st.empty()
@@ -75,14 +82,15 @@ def on_input_change():
             input_str = st.session_state['target'] # 화성시
             # 화성시 인구예측 모델로 예측한 약 100만명의 총인구 달성하는 시점            
             idx = data[data['총인구'] >= 1000000].index[0] # 찾는 지역의 인덱스
-            target_str = f"""데이터 분석가로써 답변해줘. {data.iloc[idx]["월별"]} {input_str}의 총인구는 {data.iloc[idx]["총인구"]}명, 
-                인구성장률은 {data.iloc[idx]["예측 인구성장률"]}으로 예측되며, {input_str}의 
+          
+            target_str = f"""데이터 분석가로써 답변해줘. {data.iloc[idx]["월별"]} {input_str}의 총인구는 {data.iloc[idx]["총인구"]}명으로 예측되며, 
+                {input_str}의 인구 증가 요인은 다음과 같다.
                 수도권 외부 유입: 도심규제완화, 
-                도시 접근성: GTX-A, 신안산, 
+                도시 접근성: GTX-A와 신안산선, 
                 산업단지 개발: 삼성전자 반도체 공장,
                 아동친화도시: 아동친화도시 10가지 원칙,
-                임신 출산 복지사업: 22년 출생 수 전국 2위,
-                큰 행정면적: (서울시의 1.4배, 경기도 2위)이며
+                임신 출산 복지사업: 22년 출생 수 전국 2위 달성,
+                큰 행정면적:(서울시의 1.4배, 경기도 2위)이다.
                 앞으로 {input_str}의 미래 총인구가 증가하는 이유와 변동성에 대해 보고서 형태로 자세하게 설명해줘"""
 
 
