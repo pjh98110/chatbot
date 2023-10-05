@@ -75,7 +75,7 @@ def on_input_change():
             # 화성시 인구예측 모델로 예측한 약 100만명의 총인구 달성하는 시점            
             idx = data[data['총인구'] >= 1000000].index[0] # 찾는 지역의 인덱스
           
-            target_str = f"""데이터 분석가로써 답변해줘. {data.iloc[idx]["월별"]} {input_str}의 총인구는 {data.iloc[idx]["총인구"]}명으로 예측되며, 
+            target_str = f"""데이터 분석가로서 답변해줘. {data.iloc[idx]["월별"]} {input_str}의 총인구는 {data.iloc[idx]["총인구"]}명으로 예측되며, 
                 {input_str}의 인구 증가 요인은 다음과 같다.
                 수도권 외부 유입: 도심규제완화, 
                 도시 접근성: GTX-A와 신안산선, 
